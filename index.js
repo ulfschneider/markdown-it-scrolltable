@@ -7,13 +7,11 @@ function wrapTables(md) {
     const wrapRenderer = function(tokens, idx, options, env, self) {
         try {
             let token = tokens[idx];
-            let $ = cheerio.load(token.content);
-            let tables = $('table');
+            let content = token.content;
+            content = content.replace(/<table>/gi, `<div ${wrapperStyle}><table>`);
+            content = content.replace(/<\/table>/i, `</table></div>`);
 
-            if (tables) {
-                tables.wrap(`<div ${wrapperStyle}></div>`);
-                return $('body').html();
-            }
+            return content;
         } catch (err) {
             console.error(`Failure when wrapping table ${err}`);
         }
