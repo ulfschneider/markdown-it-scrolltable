@@ -10,7 +10,7 @@ function wrapTables(md) {
             let content = token.content;
             let $ = cheerio.load(content);
 
-            let tables = $('table');
+            let tables = $('*:not(table) table');
             if (tables.length) {
                 tables.each(function() {
                     $(this).wrap(`<div ${wrapperStyle}></div>`);
