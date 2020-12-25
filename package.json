@@ -1,6 +1,6 @@
 {
     "name": "markdown-it-scrolltable",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "description": "A markdown-it plugin for horizontal scrolling of responsive tables",
     "main": "index.js",
     "scripts": {
