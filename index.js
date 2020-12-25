@@ -1,3 +1,4 @@
+const cheerio = require('cheerio');
 const wrapperStyle = 'class="scroll-table" style="overflow-x:auto;"';
 
 function wrapTables(md) {
@@ -7,12 +8,16 @@ function wrapTables(md) {
         try {
             let token = tokens[idx];
             let content = token.content;
-            content = content.replace(/<table\s.*>/gi, `<div ${wrapperStyle}><table>`); //replace first
+            let $ = cheerio.load(content);
 
-            content = content.replace(/<\/table>(?!.*<\/table>)/i, `</table></div>`); //replace last with negative lookahead
-            //check https://jwcooney.com/2014/03/03/regular-expression-to-get-the-last-instance-of-a-word/
+            let tables = $('table');
+            if (tables.length) {
+                tables.each(function() {
+                    $(this).wrap(`<div ${wrapperStyle}></div>`);
+                });
 
-            return content;
+                return $('body').html();
+            }
         } catch (err) {
             console.error(`Failure when wrapping table ${err}`);
         }
