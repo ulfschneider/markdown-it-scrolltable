@@ -1,6 +1,8 @@
-A markdown-it plugin to set wrap tables into a div for horizontal scrolling on narrow screens.  
+A markdown-it plugin to wrap tables into a `<div>` for horizontal scrolling on narrow screens.  
 
-Example:
+## Examples
+
+The following markdown table
 
 ``` md
 Column | Column
