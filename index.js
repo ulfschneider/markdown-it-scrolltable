@@ -1,4 +1,4 @@
-import * as cheerio from "cheerio";
+const cheerio = require("cheerio");
 const wrapperStyle = 'class="scroll-table" style="overflow-x:auto;"';
 
 function wrapTables(md) {
